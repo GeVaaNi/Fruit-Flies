@@ -10,27 +10,26 @@ public class Fly extends Actor
 {
     boolean male;
     private GreenfootImage map;
-    public void act() 
-    {
+    public void act() {
         
-        move(10);
+        move(8);
         if (atWorldsEnd()) {
             setRotation(Greenfoot.getRandomNumber(360));
-        } else if (atWall(this.getX(), this.getY())) {
-            
+        } else if (atWall()) {
+            setRotation(Greenfoot.getRandomNumber(360));
         }
-        
-        
     }   
     
     
     public boolean atWorldsEnd() {
-        if (getX() < 3 || getX() > getWorld().getWidth() - 3)
+        if (getX() < 3 || getX() > getWorld().getWidth() - 3) {
             return true;
-        if (getY() < 3 || getY() > getWorld().getHeight() - 3)
+        }
+        if (getY() < 3 || getY() > getWorld().getHeight() - 3) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
     
     public Fly(boolean male) {
@@ -45,15 +44,17 @@ public class Fly extends Actor
         }
     }
     
-    boolean atWall(int x, int y) {
-        Color color = map.getColorAt(x, y);
-        System.out.println(color.getBlue() + ", ");
-        System.out.print(color.getGreen() + ", ");
-        System.out.print(color.getRed() + ", ");
+    public boolean atWall() {
+        Color color = map.getColorAt(this.getX(), this.getY());
         
-        
-        // FIXME: zoek grijs
-        return ((100 < color.getBlue()) && (100 < color.getRed()) && (100 < color.getGreen()));
-        
+        int red = color.getRed();
+        int green = color.getGreen();
+        int blue = color.getBlue();
+
+        return (red == 128 && green == 128 && blue == 128);
+    }
+    
+    public void stop(){
+        Greenfoot.setSpeed(0);
     }
 }
