@@ -11,20 +11,33 @@ public class Fly extends Actor
     boolean male = true;
     public void act() 
     {
-        
+        // FIXME: zorg dat ze recht vliegen
         move(10);
-        setRotation(Greenfoot.getRandomNumber(360));
+        if (atWorldsEnd()) {
+            setRotation(Greenfoot.getRandomNumber(360));
+        }
+        
         
     }   
     
     
+    public boolean atWorldsEnd() {
+        if (getX() < 3 || getX() > getWorld().getWidth() - 3)
+            return true;
+        if (getY() < 3 || getY() > getWorld().getHeight() - 3)
+            return true;
+        else
+            return false;
+    }
+    
     public Fly(boolean male) {
         
+        setRotation(Greenfoot.getRandomNumber(360));
+        
         if (male) {
-            setImage("maleFly.png");
+            setImage("maleFly25.png");
         } else {
-            setImage("femaleFly.png");
+            setImage("femaleFly35.png");
         }
     }
 }
-
