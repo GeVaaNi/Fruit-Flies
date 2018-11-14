@@ -54,7 +54,10 @@ public class Fly extends Actor
         return (red == 128 && green == 128 && blue == 128);
     }
     
-    public void stop(){
+    public void stop() {
         Greenfoot.setSpeed(0);
+    }
+    public void start() {
+        Greenfoot.setSpeed(8);
     }
 }
