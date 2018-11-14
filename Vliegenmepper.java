@@ -35,7 +35,7 @@ public class Vliegenmepper extends Actor
             {
                 pauze=0;
             }
-            if(pauze<1000)
+            if(pauze<10000)
             {
                 pauze++;
             }            
